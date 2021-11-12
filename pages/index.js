@@ -1,17 +1,23 @@
 import Head from 'next/head';
-import useSWR from 'swr';
+import axios from 'axios';
+// import useSWR from 'swr';
 
-const fetcher = (url) => fetch(url).then((res) => res.json());
+// const fetcher = (url) => fetch(url).then((res) => res.json());
 
-export default function Home() {
-    const { data, error } = useSWR('/api/coins', fetcher);
-    if (error) return <div>Failed to load</div>;
-    if (!data) return <div>Loading...</div>;
+export async function getServerSideProps(context) {
+    const { data } = await fetch('http://localhost:3000/api/coins').then(
+        (res) => res.json()
+    );
+    return {
+        props: { coins: { data } },
+    };
+}
 
-    const coinsList = data.data.map(({ symbol, id }) => {
+export default function Home({ coins }) {
+    const { data } = coins;
+    const coinsList = data.map(({ symbol, id }) => {
         return <li key={id}>{symbol}</li>;
     });
-
     return (
         <div>
             <Head>
