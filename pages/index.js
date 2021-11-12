@@ -1,8 +1,4 @@
 import Head from 'next/head';
-import axios from 'axios';
-// import useSWR from 'swr';
-
-// const fetcher = (url) => fetch(url).then((res) => res.json());
 
 export async function getServerSideProps(context) {
     const { data } = await fetch('http://localhost:3000/api/coins').then(
