@@ -1,26 +1,8 @@
-import { errorHandler } from '../../lib/utils/errorHandler';
+import btcData from '../../public/btcData.csv';
+import { toLowerCase } from '../../lib/utils/toLowerCase';
 
-export default async function getCoinsPrice(req, res) {
-    const secretKey = process.env.API_KEY;
-    const data = await fetch(
-        'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest',
-        {
-            method: 'GET',
-            qs: {
-                start: '1',
-                limit: '5000',
-                convert: 'USD',
-            },
-            headers: {
-                'X-CMC_PRO_API_KEY': secretKey,
-            },
-            json: true,
-            gzip: true,
-        }
-    )
-        .then(errorHandler)
-        .then((res) => res.json())
-        .catch((err) => console.log(err));
-    if (!data) res.json({ notFound: true });
-    res.json(data);
+export default async function getCoinData(req, res) {
+    if (!btcData) return res.status(404).json({ notFound: true });
+    const lowerCased = btcData.map(toLowerCase);
+    res.status(200).json(lowerCased);
 }
