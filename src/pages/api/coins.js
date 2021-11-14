@@ -21,5 +21,6 @@ export default async function getCoinsPrice(req, res) {
         .then(errorHandler)
         .then((res) => res.json())
         .catch((err) => console.log(err));
+    if (!data) res.json({ notFound: true });
     res.json(data);
 }
