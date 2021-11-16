@@ -37,6 +37,9 @@ function render(data) {
 	const xValue = (d) => d.price;
 	const yValue = (d) => d.date;
 
+	// Formats
+	const dollarFormat = (d) => `$${format(',.2f')(d)}`;
+
 	// Bar rectangles
 	const xScale = scaleLinear()
 		.domain([0, max(data, xValue)])
@@ -54,7 +57,7 @@ function render(data) {
 	// X & Y Axis
 	g.append('g').call(axisLeft(yScale));
 	g.append('g')
-		.call(axisBottom(xScale))
+		.call(axisBottom(xScale).tickFormat(dollarFormat))
 		.attr('transform', `translate(0, ${innerHeight})`);
 
 	// Draw chart based on data
