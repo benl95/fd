@@ -41,10 +41,15 @@ export function render(data) {
 		.attr('transform', `translate(${margin.left}, ${margin.top})`);
 
 	// X & Y Axis
-	g.append('g').call(axisLeft(yScale));
+	g.append('g')
+		.call(axisLeft(yScale))
+		.selectAll('.domain, .tick line')
+		.remove();
 	g.append('g')
 		.call(axisBottom(xScale).tickFormat(dollarFormat))
-		.attr('transform', `translate(0, ${innerHeight})`);
+		.attr('transform', `translate(0, ${innerHeight})`)
+		.select('.domain')
+		.remove();
 
 	// Draw chart based on data
 	g.selectAll('rect')
