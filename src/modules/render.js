@@ -1,6 +1,5 @@
 import {
 	select,
-	csv,
 	scaleLinear,
 	max,
 	scaleBand,
@@ -9,25 +8,12 @@ import {
 	format,
 } from 'https://cdn.skypack.dev/d3@7';
 
+// SVG Element and attributes
 const svg = select('svg');
 const width = +svg.attr('width');
 const height = +svg.attr('height');
 
-createChart('/src/assets/cardano.csv');
-
-function createChart(path) {
-	return csv(path)
-		.then((data) => {
-			const newData = data.map((data) => ({
-				date: new Date(data.Date).getFullYear(),
-				price: parseFloat(data.Close),
-			}));
-			return newData;
-		})
-		.then((newData) => render(newData));
-}
-
-function render(data) {
+export function render(data) {
 	// Dimensions
 	const margin = { top: 20, right: 20, bottom: 20, left: 20 };
 	const innerWidth = width - margin.left - margin.right;

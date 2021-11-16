@@ -1,24 +1,25 @@
 {
-  "name": "fd",
-  "version": "1.0.0",
-  "description": "Data visualization using the D3.js library",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/benl95/fd.git"
-  },
-  "keywords": [
-    "d3",
-    "data",
-    "visualization"
-  ],
-  "author": "Ben Langenberg",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/benl95/fd/issues"
-  },
-  "homepage": "https://github.com/benl95/fd#readme"
+	"name": "fd",
+	"version": "1.0.0",
+	"description": "Data visualization using the D3.js library",
+	"type": "module",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/benl95/fd.git"
+	},
+	"keywords": [
+		"d3",
+		"data",
+		"visualization"
+	],
+	"author": "Ben Langenberg",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/benl95/fd/issues"
+	},
+	"homepage": "https://github.com/benl95/fd#readme"
 }
