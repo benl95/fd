@@ -14,8 +14,9 @@ const width = +svg.attr('width');
 const height = +svg.attr('height');
 
 export function render(data) {
+	console.log(data);
 	// Dimensions
-	const margin = { top: 20, right: 20, bottom: 20, left: 20 };
+	const margin = { top: 20, right: 20, bottom: 70, left: 70 };
 	const innerWidth = width - margin.left - margin.right;
 	const innerHeight = height - margin.top - margin.bottom;
 
@@ -41,22 +42,38 @@ export function render(data) {
 		.attr('transform', `translate(${margin.left}, ${margin.top})`);
 
 	// X & Y Axis
-	g.append('g')
-		.call(axisLeft(yScale))
-		.selectAll('.domain, .tick line')
-		.remove();
-	g.append('g')
+	const yAxisGroup = g.append('g').call(axisLeft(yScale));
+	yAxisGroup.selectAll('.domain, .tick line').remove();
+	yAxisGroup
+		.append('text')
+		.attr('transform', 'rotate(-90)')
+		.attr('y', 15 - margin.left)
+		.attr('x', 0 - innerHeight / 2)
+		.attr('fill', 'black')
+		.text('Year')
+		.style('font-size', '18px');
+
+	const xAxisGroup = g
+		.append('g')
 		.call(axisBottom(xScale).tickFormat(dollarFormat))
-		.attr('transform', `translate(0, ${innerHeight})`)
-		.select('.domain')
-		.remove();
+		.attr('transform', `translate(0, ${innerHeight})`);
+	xAxisGroup.select('.domain').remove();
+	xAxisGroup
+		.append('text')
+		.attr('y', 60)
+		.attr('x', innerWidth / 2)
+		.attr('fill', 'black')
+		.text('Price per coin')
+		.style('font-size', '18px')
+		.style('font-family', 'sans-serif');
 
 	g.append('text')
 		.attr('class', 'title')
 		.attr('x', width / 2)
 		.attr('text-anchor', 'middle')
 		.text('Crypto coin price trend')
-		.style('font-size', '20px');
+		.style('font-size', '20px')
+		.style('font-family', 'sans-serif');
 
 	// Draw chart based on data
 	g.selectAll('rect')
