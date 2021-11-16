@@ -51,6 +51,13 @@ export function render(data) {
 		.select('.domain')
 		.remove();
 
+	g.append('text')
+		.attr('class', 'title')
+		.attr('x', width / 2)
+		.attr('text-anchor', 'middle')
+		.text('Crypto coin price trend')
+		.style('font-size', '20px');
+
 	// Draw chart based on data
 	g.selectAll('rect')
 		.data(data)
