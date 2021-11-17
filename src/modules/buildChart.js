@@ -10,10 +10,7 @@ export function buildChart(path) {
 			}));
 			return newData;
 		})
-		.then((newData) =>
-			BarChart(newData, {
-				label: 'Crypto price trend',
-				yLabel: 'Price per coin',
-			})
-		);
+		.then((parsed) => {
+			BarChart(parsed);
+		});
 }
