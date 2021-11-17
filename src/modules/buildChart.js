@@ -1,5 +1,5 @@
 import { csv } from 'https://cdn.skypack.dev/d3@7';
-import { render } from './render.js';
+import { BarChart } from './BarChart.js';
 
 export function buildChart(path) {
 	return csv(path)
@@ -10,5 +10,10 @@ export function buildChart(path) {
 			}));
 			return newData;
 		})
-		.then((newData) => render(newData));
+		.then((newData) =>
+			BarChart(newData, {
+				label: 'Crypto price trend',
+				yLabel: 'Price per coin',
+			})
+		);
 }

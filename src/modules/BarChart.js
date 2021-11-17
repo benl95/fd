@@ -13,10 +13,9 @@ const svg = select('svg');
 const width = +svg.attr('width');
 const height = +svg.attr('height');
 
-export function render(data) {
-	console.log(data);
+export function BarChart(data, { label, yLabel }) {
 	// Dimensions
-	const margin = { top: 20, right: 20, bottom: 70, left: 70 };
+	const margin = { top: 30, right: 20, bottom: 70, left: 70 };
 	const innerWidth = width - margin.left - margin.right;
 	const innerHeight = height - margin.top - margin.bottom;
 
@@ -44,35 +43,28 @@ export function render(data) {
 	// X & Y Axis
 	const yAxisGroup = g.append('g').call(axisLeft(yScale));
 	yAxisGroup.selectAll('.domain, .tick line').remove();
-	yAxisGroup
-		.append('text')
-		.attr('transform', 'rotate(-90)')
-		.attr('y', 15 - margin.left)
-		.attr('x', 0 - innerHeight / 2)
-		.attr('fill', 'black')
-		.text('Year')
-		.style('font-size', '18px');
 
 	const xAxisGroup = g
 		.append('g')
-		.call(axisBottom(xScale).tickFormat(dollarFormat))
+		.call(
+			axisBottom(xScale).tickFormat(dollarFormat).tickSize(-innerHeight)
+		)
 		.attr('transform', `translate(0, ${innerHeight})`);
 	xAxisGroup.select('.domain').remove();
 	xAxisGroup
 		.append('text')
-		.attr('y', 60)
+		.attr('y', 40)
 		.attr('x', innerWidth / 2)
 		.attr('fill', 'black')
-		.text('Price per coin')
-		.style('font-size', '18px')
-		.style('font-family', 'sans-serif');
+		.text(yLabel)
+		.style('font-size', '14px');
 
 	g.append('text')
 		.attr('class', 'title')
-		.attr('x', width / 2)
-		.attr('text-anchor', 'middle')
-		.text('Crypto coin price trend')
-		.style('font-size', '20px')
+		.attr('dy', -15)
+		.attr('text-anchor', 'start')
+		.text(label)
+		.style('font-size', '14px')
 		.style('font-family', 'sans-serif');
 
 	// Draw chart based on data
