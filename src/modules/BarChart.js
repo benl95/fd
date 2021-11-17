@@ -68,7 +68,7 @@ export function drawBarChart(data) {
 
 	const bars = chart.selectAll('rect').data(data);
 
-	const newBars = bars.join(
+	bars.join(
 		(enter) =>
 			enter
 				.append('rect')
