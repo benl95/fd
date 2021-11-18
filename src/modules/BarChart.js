@@ -39,6 +39,14 @@ const x = chart
 
 const y = chart.append('g').attr('class', 'y-axis');
 
+const formatNumber = (d) => {
+	if (d < 1) {
+		return `$${format(',.2f')(d)}`;
+	} else {
+		return `$${format('.2s')(d)}`;
+	}
+};
+
 x.append('text')
 	.attr('y', 50)
 	.attr('x', innerWidth / 2 - 20)
@@ -60,7 +68,6 @@ export function drawBarChart(data) {
 	const xValue = (d) => d.price;
 	const yValue = (d) => d.date;
 	const t = transition().duration(1000);
-	const dollarFormat = (d) => `$${format(',.2f')(d)}`;
 
 	xScale.domain([0, max(data, xValue)]);
 	yScale.domain(data.map(yValue));
@@ -82,7 +89,7 @@ export function drawBarChart(data) {
 				.attr('width', (d) => xScale(xValue(d)))
 	);
 
-	x.call(xAxis.tickFormat(dollarFormat).tickSize(-innerHeight))
+	x.call(xAxis.tickFormat(formatNumber).tickSize(-innerHeight))
 		.select('.domain')
 		.remove();
 
