@@ -34,3 +34,7 @@ Open the index.html file in Live Server
 
 -   D3 V7
 -   Prettier
+
+## license
+
+MIT
