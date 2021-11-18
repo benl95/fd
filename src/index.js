@@ -6,7 +6,7 @@ getData('./assets/cardano.csv');
 select('#select-coin').on('change', (e) => {
     const path =
         e.target.value === 'BTC'
-            ? './assets/cardano.csv'
-            : './assets/bitcoin.csv';
+            ? './assets/bitcoin.csv'
+            : './assets/cardano.csv';
     getData(path);
 });
