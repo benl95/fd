@@ -3,6 +3,8 @@
 This repo is dedicated to learning the D3.js library by making data visualizations.
 The project consists of a barchart that visualizes the price snapshots of various cryptocurrencies over the course of 5 years.
 
+Live link: [link](https://app.netlify.com/sites/fd-d3/overview)
+
 The project is graded according to the following rubric: [Rubric](https://github.com/cmda-tt/course-21-22/blob/main/fd/assessment.md)
 
 <img src="./src/assets/barchart.png" alt="drawing" width="600" height="300"/>
